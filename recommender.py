@@ -32,5 +32,11 @@ similarities = cosine_similarity(user_vector, job_vectors)
 top_3_indices = similarities[0].argsort()[-3:][::-1]
 
 print("\nTop 3 recommended roles:")
+print("-" * 25)
+
+rank = 1
 for i in top_3_indices:
-    print(pf["role"][i], "-", round(similarities[0][i], 3))
+    role_name = pf["role"][i]
+    match_percent = similarities[0][i] * 100
+    print(f"{rank}. {role_name} - {match_percent:.1f}% match")
+    rank += 1
